@@ -1,0 +1,73 @@
+README: MyNews-FMan2
+
+/**
+ * Contents:
+ **/
+
+    1.  GETTING STARTED
+    2.  REQUIREMENTS
+    3.  INSTALL
+    4.  MISC
+    5.  CONTACT
+
+/********************************************************************/
+/**
+ * 1.  GETTING STARTED
+ **/
+
+    @Package:       MyNews-FMan2
+    @Creator:       Mike McMurray (alien@alienated.org)
+    @Maintainer:    Mike McMurray (alien@alienated.org)
+
+    Details:
+
+    This Module is intended to extend the functionality of the
+    MyNews-5 CMS (Content Management System) with a relatively basic
+    web-based file manager.
+
+    The files included with this MyNews-Module distribution are:
+
+    $ MyNews-FMan2/README
+    $ MyNews-FMan2/INSTALL
+    $ MyNews-FMan2/UPGRADING
+    $ MyNews-FMan2/htdocs/modules/display.php
+    $ MyNews-FMan2/htdocs/modules/conf/fman2.conf.php
+    $ MyNews-FMan2/htdocs/admin/fman2admin.php
+    $ MyNews-FMan2/htdocs/admin/classes/fileupload.class.php
+    $ MyNews-FMan2/htdocs/admin/lib/fman2admin.lib.php
+    $ MyNews-FMan2/sql/MyNews-FMan2.help.sql
+
+/********************************************************************/
+/**
+ * 2.  REQUIREMENTS
+ **/
+
+    - MyNews CMS Framework - >= 5-RC1
+
+/********************************************************************/
+/**
+ * 3.  INSTALL
+ **/
+
+    - Please Refer to the included INSTALL file.
+
+/********************************************************************/
+/**
+ * 4.  MISC
+ **/
+
+    This Module makes use of the iMarc PHP file upload class
+    version 2.1.
+
+    This class was modified to add certain functionality for use
+    with the MyNews-FMan2 module.  The version included in this
+    package is heavily modified and if upgraded outside of a
+    MyNews-FMan2 release, will most likely break your installation.
+
+/********************************************************************/
+/**
+ * 5.  CONTACT
+ **/
+
+    For questions, comments, or bug reporting, pleae contact:
+    Mike McMurray <alien@alienated.org>

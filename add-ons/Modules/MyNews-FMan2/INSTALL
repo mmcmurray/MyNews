@@ -1,0 +1,70 @@
+INSTALL:    MyNews-FMan2
+
+/*******************************************************************/
+
+NOTE: Before installing this package, pleaes view the README file
+      in it's entirety.
+
+NOTE: If you are upgrading a previously install version, please see
+      the UPGRADING file for detailed upgrading instructions.
+
+NOTE: Welcome back from the README!
+
+1)  Make sure you're in the MyNews-FMan2 root directory.
+
+2)  Insert the "help" data into your current MyNews database.
+
+    $ mysql -u <user> -p <database> < sql/MyNews-FMan2.help.sql
+    Password: ********
+
+3)  Changed to the MyNews-FMan2/htdocs directory
+
+    $ cd htdocs/
+
+4)  Recursively copy all of the files into your MyNews Installation
+    htdocs directory.
+
+    $ cp -Rv * /path/to/MyNews-5/htdocs/.
+
+5)  You shouldn't need to change configuration parameters, but if you
+    would like to view what they are, they are stored in the 
+    modules/conf/ directory.
+
+    $ vim /path/to/MyNews-5/htdocs/modules/conf/fman2.conf.php
+
+6)  You will need to create your userdata repository.
+
+    $ cd /path/to/MyNews-5/htdocs/modules/
+    $ mkdir userdata
+
+7)  Change permissions on the userdata to allow FMan2 to write to it.
+
+    This can either be accomplished by setting the directory
+    read/write/execute for all users.  This is not the recommended
+    method, but works none-the-less.
+
+    $ chmod 777 userdata
+
+    The recommended method, if you have superuser (root) access, is
+    change the ownership on the userdata directory to your webserver
+    user (most likely, either the nobody user or the www user.
+
+    $ su
+    $ chown <webserver_user> userdata
+    $ exit
+
+8)  Now you need to insert MyNews-FMan module into the MyNews
+    installation.  This is accomplished by including the module
+    config file into the main config file.
+
+    - While still in the /path/to/MyNews-5/htdocs directory:
+
+        $ vi include/config.inc.php
+
+    - Insert the following line at the bottom of the MyNews config
+      file.  (Before the "?>".)
+        
+    include(MODULE_ROOT . '/conf/fman2.conf.php');
+
+9)  Congratulations!  You should now see a link in your MyNews Admin
+    interface (via webbrowser) to the "Module: File Manager II" page.

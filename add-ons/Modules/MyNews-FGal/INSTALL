@@ -1,0 +1,48 @@
+INSTALL:    MyNews-FGal
+/*******************************************************************/
+** NOTE: Before installing this package, pleaes view the README file
+      in it's entirety.
+
+** NOTE: If you are upgrading a previously installed version, please
+      see the UPGRADING file for detailed upgrading instructions.
+/*******************************************************************/
+1)  Make sure you're in the MyNews-FGal root directory.
+
+2)  Insert the FGal db tables into your MyNews-5 database.
+
+    ** Note:  If upgrading from a MyNews-4 Photo Gallery, please skip
+              this step and proceed to step 3.
+
+    $ mysql -u <user> -p <database> < sql/MyNews-FGal.sql
+    Password: ********
+
+3)  Changed to the MyNews-FGal/htdocs directory
+
+    $ cd htdocs/
+
+4)  Recursively copy all of the files into your MyNews Installation
+    htdocs directory.
+
+    $ cp -Rv * /path/to/MyNews-5/htdocs/.
+
+5)  You shouldn't need to change configuration parameters, but if you
+    would like to view what they are, they are stored in the 
+    modules/conf/ directory.
+
+    $ vim <MyNewsRoot>/htdocs/modules/conf/fgal.conf.php
+
+6)  Now you need to insert MyNews-FGal module into the MyNews-5
+    installation.  This is accomplished by including the module
+    config file into the main config file.
+
+    - While still in the <MyNewsRoot>/htdocs directory:
+
+        $ vi include/config.inc.php
+
+    - Insert the following line at the bottom of the MyNews config
+      file.  (Before the "?>".)
+        
+    include(MODULE_ROOT . '/conf/fgal.conf.php');
+
+7)  Congratulations!  You should now see a link in your MyNews Admin
+    interface (via webbrowser) to the "Module: Foto Gallery" page.

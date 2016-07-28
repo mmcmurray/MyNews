@@ -1,0 +1,73 @@
+README: MyNews-FGal
+
+/**
+ * Contents:
+ **/
+
+    1.  GETTING STARTED
+    2.  REQUIREMENTS
+    3.  INSTALL
+    4.  MISC
+    5.  CONTACT
+
+/********************************************************************/
+/**
+ * 1.  GETTING STARTED
+ **/
+
+    @Package:       MyNews-FGal
+    @Creator:       Mike McMurray (alien@alienated.org)
+    @Maintainer:    Mike McMurray (alien@alienated.org)
+
+    Details:
+
+    This Module is intended to extend the functionality of the
+    MyNews-5 CMS (Content Management System) with a web based
+    photo gallery.
+
+    The files included with this MyNews-Module distribution are:
+
+    $ MyNews-FGal/README
+    $ MyNews-FGal/INSTALL
+    $ MyNews-FGal/UPGRADING
+    $ MyNews-FGal/htdocs/modules/conf/fgal.conf.php
+    $ MyNews-FGal/htdocs/modules/fgal.php
+    $ MyNews-FGal/htdocs/modules/lib/fgal.lib.php
+    $ MyNews-FGal/htdocs/admin/fgaladmin.php
+    $ MyNews-FGal/htdocs/admin/lib/fgaladmin.lib.php
+    $ MyNews-FGal/sql/MyNews-FGal.sql
+    $ MyNews-FGal/sql/MyNews-FGal-upgrade.sql
+
+/********************************************************************/
+/**
+ * 2.  REQUIREMENTS
+ **/
+
+    - [1] MyNews CMS Framework - >= 5-RC1
+    - [2] MyNews-FMan2 addon module.
+
+[1] http://mynews.alienated.org/pub/MyNews/v5/MyNews-latest.tar.gz
+[2] http://mynews.alienated.org/pub/MyNews/v5/Modules/
+/********************************************************************/
+/**
+ * 3.  INSTALL
+ **/
+
+    - Please Refer to the included INSTALL file.
+
+/********************************************************************/
+/**
+ * 4.  MISC
+ **/
+
+    This is port of the original "Photo Gallery" module for the
+    Version 4 branch of the MyNews CMS which was also written and
+    maintained by me (Mike McMurray).
+
+/********************************************************************/
+/**
+ * 5.  CONTACT
+ **/
+
+    For questions, comments, or bug reporting, pleae contact:
+    Mike McMurray <alien@alienated.org>

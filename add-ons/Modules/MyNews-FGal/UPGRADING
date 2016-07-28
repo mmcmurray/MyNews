@@ -1,0 +1,58 @@
+UPGRADING:  MyNews-FGal
+
+/*******************************************************************/
+
+For users of the old MyNews-4 "photo gallery" module, this file
+provides the necessary steps to upgrade that database to a
+MyNews-5 install of this MyNews-FGal addon module.
+
+** Note: Please make sure the MyNews-FGal installation instructions
+         are followed before using this upgrade tutorial.
+
+1)  First thing, you will need to copy your current images from their
+    present location to the following directory.
+
+    $ /path/to/MyNews5/htdocs/modules/userdata/<username>/fgal/
+
+2)  All sub-directories below the `userdata` directory will need to
+    be owned by the webserver user[1] or world read/write/executable.
+
+    [1] Most often either `nobody` or `www`
+
+    $ cd /path/to/MyNews5/htdocs/modules/
+    $ chown -R 777 *
+
+    or the preferred method.
+
+    $ cd /path/to/MyNews5/htdocs/modules/
+    $ su
+    Password: ********
+    $ chown -R <web_user> *
+
+3)  Now that these files are here, you will need to remove all of the
+    old thumbnails.
+
+    ** Note:  Upon initial load, new thumbnails will be generated.
+
+    $ cd /path/to/MyNews5/htdocs/modules/userdata/<user>/fgal/
+    $ rm -rf thumbnails
+
+4)  Next up, we need to copy the old photos database from the
+    MyNews-4 installation and insert it into the new MyNews-5
+    database.
+
+    $ cd /path/to/MyNews5/sql
+    $ mysqldump -u <user> -p <MyNews-4 DB> photos > photos.sql
+
+5)  Insert these into your new MyNews-5 Database.
+
+    $ mysql -u <user> -p <MyNews-5 DB> < photos.sql
+
+6)  Now we need to run the SQL upgrade script against the photos
+    table in the MyNews-5 database.
+
+    $ mysql -u <user> -p <MyNews-5 DB> < MyNews-FGal-upgrade.sql
+
+7)  Congratulations, this should complete the upgrade process from
+    the old MyNews-4 photo gallery module to the new MyNews-5
+    FGal module.
