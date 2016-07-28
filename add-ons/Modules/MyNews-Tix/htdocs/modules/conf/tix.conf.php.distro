@@ -1,0 +1,75 @@
+<?
+define('MODULE_ROOT', $myNewsConf['path']['sys']['modules']);
+define('MOD_WEB_ROOT', $myNewsConf['path']['web']['modules']);
+
+// Email Address of ticket system mailbox
+$myNewsModule['email']['mbox']          = 'tierIItickets@managedmail.com';
+
+// Attachments directory, for external files that may be attached to a ticket
+// or ticket notes.
+$myNewsModule['path']['sys']['attach']  = MODULE_ROOT . '/bin/attachments';
+$myNewsModule['path']['web']['attach']  = MOD_WEB_ROOT . 'bin/attachments';
+
+// Script names and locations.
+$myNewsModule['name']['tix']            = 'Trouble Tickets';
+$myNewsModule['scripts']['tix']         = 'tix.php';
+
+$myNewsModule['admin']['name']['tix']   = 'Administer Ticketing System';
+$myNewsModule['adminScripts']['tix']    = 'tixadmin.php';
+
+// Tickets tables.
+$myNewsModule['db']['tbl']['tix']['acl']            = 'tix.acl';
+$myNewsModule['db']['tbl']['tix']['category']       = 'tix.category';
+$myNewsModule['db']['tbl']['tix']['modifications']  = 'tix.modifications';
+$myNewsModule['db']['tbl']['tix']['priority']       = 'tix.priority';
+$myNewsModule['db']['tbl']['tix']['project']        = 'tix.project';
+$myNewsModule['db']['tbl']['tix']['status']         = 'tix.status';
+$myNewsModule['db']['tbl']['tix']['tickets']        = 'tix.tickets';
+$myNewsModule['db']['tbl']['tix']['udb']            = 'tix.authors';
+$myNewsModule['db']['tbl']['tix']['groups']         = 'tix.groups';
+$myNewsModule['db']['tbl']['tix']['email_users']    = 'tix.email_users';
+
+// Outage Summary tables.
+$myNewsModule['db']['tbl']['os']['summary']         = 'tix.osummaries';
+
+// Notification keys.
+$myNewsModule['email']['notify']['tix']     = false;
+$myNewsModule['tix']['template']['notify']  = <<<EOT
+
+%DATE%
+Ticket: #%NUM% has been %ACTION%.
+-------------------------------------------------------------------
+Description: %DESC%
+
+
+Modification:
+%MOD%
+
+-------------------------------------------------------------------
+You can view this ticket at
+%URL%?mode=edit&id=%NUM%
+on the %SYS_NAME% system.
+EOT;
+
+// Outage Summary keys.
+$myNewsModule['tix']['os']['on']        = true;
+$myNewsModule['tix']['template']['os']  = <<<EOT
+
+-------------------------------------------------------------------
+System:         %SYS%
+Sev:            %SEV%
+Start:          %STIM%
+End:            %ETIM%
+Duration:       %DURA%
+
+Root Cause:     %ROOT%
+
+Resolution:     %RESO%
+
+Cust. Per Min.: %CUST%
+Cust. Count:    %CCNT%
+-------------------------------------------------------------------
+
+Ticket ID:  %TID%
+EOT;
+?>

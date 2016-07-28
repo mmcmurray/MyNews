@@ -1,0 +1,238 @@
+Ticketing System Usage Documentation:
+
+    Table of Contents:
+        1.  About
+            1.1  Ticket Options
+        2.  Opening a Ticket
+            2.1  Web Interface
+            2.2  Email
+        3.  Updating a ticket
+            3.1  Web Interface
+            3.2  Email
+        4.  Creating an Outage Summary
+        5.  Conclusion
+
+1.  About
+
+    This Application was written to fulfill the need of a trouble
+    ticket / bug tracking system.  It features the ability to assign
+    multiple "options" on each ticket as well as multiple ways to
+    interface with the system itself.
+
+    1.1 Ticket Options
+
+        Some of the "ticket" options that may be set are:
+        Project:    This option defines what "project" or system the
+                    ticket is in relation to.  For example, in a web
+                    hosting environment, you would set this to:
+                        customerwebsite1.com
+                    provided "customerwebsite1.com" has been identified
+                    as "Project" in the `projects` table.
+
+        Category:
+                    Let's you set what "category" you want the ticket to
+                    be assigned.
+
+                    The preconfigured "categories" are:
+                        Outage
+                        General
+                        Bug
+                        Feature Request
+                        Investigation
+        
+        Status:
+                    Defined as what "State" the ticket exists as.  Some
+                    examples of Statuses would be:
+                        Open
+                        Pending
+                        Delegated
+                        Need More Info
+                        Closed
+                        Resolved
+                        etc....
+
+        Owner:
+                    You can set who currently "owns" the ticket by
+                    selected a person from this option list.  The list
+                    is defined by who exists in your user group and
+                    what user groups are allowed to access/modify the
+                    ticket, based on pre-defined ACLs.
+
+                    Note:  ACLs are defined in the ticket system
+                    administration section.
+
+        Priority:
+                    Sets the "Priority" of the open ticket.  Priorities
+                    are defined in the `priorities` table in the
+                    database and can be administered through the Tickets
+                    Administration interface.
+
+        Title/Short Description:
+                    This is the "short description"or "title" of the
+                    open ticket.  It is important for this field to
+                    provide as much information about the ticket as
+                    possible in as short of a description as possible.
+
+                    An Example of a ticket title would be:
+                        "The Portal is down"
+
+        Long Description:
+                    This is the expanded or "long description".  This
+                    field can be used to store static content about the
+                    ticket.  For instance, if "The Portal is Down" was
+                    the Title/Short Desc., you would put something in
+                    this field like:
+
+                        "The Java processes are running at the maximum
+                        allowed file descriptors.  This was found by
+                        running:
+                          $ pfiles <java pid>
+
+                        Also, the portal log files were complaining of
+                        'too many open files'".
+
+        Ticket Notes/Modications:
+                    This is where you would outline what troubleshooting
+                    steps were taking while working on the issue, or to
+                    let someone know that it is "being worked" on.  
+
+        Outage Summaries:
+                    By selecting the "Create Outage Summary" box, and
+                    clicking the "Save Trouble Ticket" button, you will
+                    be taken to a new form table that allows you to
+                    build an outage summary and email it to a predefined
+                    list of users (a comma seperated list defined in the
+                    'notify' field of the `projects` table.
+
+                    Note:  The notify list can be modified in the
+                    "Modify/Delete projects" section of the Ticket
+                    Administration section.
+
+
+2.  Opening a ticket
+    2.1 Web Interface
+
+        - To open a ticket, login to the ticketing system and select the:
+        "Tickets: Add New" link in the "Ticket Administration" block.
+
+        - Select which "Project" the ticket will be associated with
+
+        - Select the Category
+
+        - Select the Priority
+
+        - Select who the ticket will be assigned to upon opening.
+
+        - Provide the Title/Short Description
+
+        - Provide the Long Description of the problem.
+
+        - Select the "Submit Trouble Ticket" button.
+
+        This will submit/open the ticket in the system.
+
+    2.2 Email Interface
+
+        - Send an email to the predefined "Ticket Mailbox - Email
+          Address" with the "Title/Short Description" in the Subject
+          field.
+
+        - The Body of the message should look something like the
+          following:
+
+            Priority: High
+            Service:  Portal
+
+            "You long description text.  This should be very
+            descriptive".
+
+          Note:  Service is defined as the "Project" name.  So, if you
+          have a "project" named "customerwebsite1.com", this is what
+          you would put in the "Service:" description in the email.
+
+        - An email should be returned to you with the status of your
+          submitted email ticket.  It should include the ticket number
+          and what action was taken with the email.
+
+3.  Updating a ticket
+    3.1 Web Interface
+
+        To update a ticket through the web interface, you will have to
+        know what ticket number the ticket is saved as, or use the
+        "Search" utility to find the ticket.
+
+        Once found, select the ticket and you will be taken to a
+        "Tickets:Edit" screen.  It is in this screen that you can modify
+        any part of the ticket sans "Creator" and "Date Added".  Please
+        reference the "Ticket Options" section for a list of what the
+        options mean.
+
+    3.2 Email
+
+        By updating a ticket via email, you will be limited to adding
+        "Notes" to the ticket.  You will need to either respond to your
+        "open ticket" notification or define the ticket number in the
+        Subject field of your email.  For example:
+
+            Subject:  Trouble Tickets:  Update Notification [#1]
+
+            Body:
+                I would like to know the status of this ticket... Where
+                are we at with the troubleshooting of the issue?
+
+        It is imperitive that the ticket number be referenced as it is
+        above.  ex.  [#100]
+
+4.  Creating an Outage Summary
+
+    Currently, the only method of creating an outage summary is through
+    the web-interface.  There will eventually be a "guest" interface
+    that users would be provided with the same "outage summary" form,
+    but would need to input the ticket number so it will be placed in
+    the `osummaries` table.
+
+    In the outage summary form, you will define the following:
+
+        Subject:            This will be pre-populated with the Ticket's
+                            Title/Short Description, but can be
+                            overridden
+        
+        Severity:           This will be pre-defined by the "Priority"
+                            of the ticket, but can be overridden.
+
+        Start Time:         Please make sure this exists before the "End
+                            Time" as it *WILL* generate a negative
+                            number.
+
+        End Time:           The ending time of the outage.  Should take
+                            place after the start time.  (See a pattern
+                            here?)
+                            
+        Customer Per Min.:  This is the number of customers affected per
+                            minute.  This will be multiplied by the
+                            "duration" (calculated by subtracting "End
+                            Time" from "Start Time" to come up with the
+                            "Total Customer Count"
+
+        Root Cause:         Pretty self explanatory.  This is what was
+                            determine to have caused the ticket to be
+                            opened in the first place.
+
+        Resolution:         A brief description of how the issue was
+                            resolved
+
+        Extra Information:  This is a pretty generic field.  You would
+                            put anything in this field that you would
+                            not want emailed along with the Outage
+                            Summary.  For example:
+                                "We found about this issue from the
+                                <insert tool name here> monitoring
+                                tool".
+
+5.  Conclusion
+
+    If you have any questions about this system or how to use it, please
+    contact myself at:  mike.mcmurray@verizon.com and I will get back to
+    you as soon as possible with the answer (if I can answer it).
+
+-- The End.
