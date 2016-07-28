@@ -1,0 +1,370 @@
+README:
+
+/** $Id: README 510 2005-09-27 21:39:13Z alien $ */
+
+/** Note:
+ *   If you are upgrading from a previous version of MyNews-4, please
+ *   see the UPGRADING file in the source distribution.
+ **/
+
+    1. GETTING STARTED
+       1.1 Intro
+       1.2 Features
+       1.3 The Administration Interface
+    2. REQUIREMENTS
+    3. INSTALL
+       3.1 MySql setup
+       3.2 MyNews setup
+    4. PERMISSIONS
+    5. SECTIONS
+    6. THEMES / TEMPLATES
+    7. CHANNEL FILE
+    8. MISC
+    9. CONTACT
+
+#--------------------------------------------------------------------#
+/**
+ *  1.  GETTING STARTED
+ **/
+    /**
+     *  1.1 - Intro
+     **/
+    This is MyNews 5.
+    
+    MyNews is a content management system built on the idea of ease of use.
+    It features a module and blocks system as well as a templating engine.
+    The template system allows the seperation of code / presentation.  This
+    allows the php developers to focus on code and the web developers to
+    focus on the presentation.
+     
+    MyNews only works with MySQL at the moment.  I plan on building in
+    database abstraction (most likely with adodb) in the next major release,
+    which will be 6.0.  If you want to make it work with other databases,
+    please feel free to do so.
+
+    First thing I would like to do, is to give credit where it is due. The
+    idea for MyNews wasn't mine.  If it weren't for Stig-Ørjan Smelror of
+    winther.net (stig@winther.net) MyNews probably wouldn't have been born.
+    Stig wrote the inital release of MyNews and it suited his needs.  I then
+    took over the project.  Since the Release of version 2.0, none of Stig's
+    code remains, but the concept is still his.  Therefore, I would like to
+    thank him again.
+
+    Other people of mention are: JedTheHead from http://www.organization.cx.
+    If it weren't for his insight on the comments system, I probably would
+    have lost interest a looong time ago.
+
+    Finally, I would like to thank everyone who uses/has used/ and
+    contributed to the project.  I'm trying to get things going again, and
+    hope that the project takes off after a long vacation.
+
+    Thanks again everyone!
+
+    --Mike
+
+    /**
+     *  1.2 - Features
+     **/
+
+    Now, on to features, etc...... okay.
+    This CMS features the follwing administrative tools: 
+
+        1. Posting/Deleting/Editing content through a web interface.
+        2. A nested comment system.
+        3. Author administration with Author/Editor/Admin permissions
+           (See the README section on PERMISSIONS)
+        4. Comment administration.
+        5. Submission adminstration.
+        6. Calendar administration.
+
+    /**
+     *  1.3 - The Administration Interface
+     **/
+
+    The admin interface is pretty self explanatory.  I suggest you just play
+    around with it to get used to it.
+
+    *NOTE*
+    The default login to the admin section is as follows:
+    User:   admin
+    Pass:   abc123
+
+#--------------------------------------------------------------------#
+/**
+ *  2.  REQUIREMENTS
+ */
+ 
+    Following are packages that are required for MyNews to work.
+    The smallest revision number listed is the minimum version of the
+    package that is required.  Newer release of the packages are supported
+    unless otherwise noted.
+
+    Note: If you want me to test it on a different build, provide me a host ;]
+
+    --------------------------------------------------------
+    Package:        Tested Versions:        URL:
+    --------------------------------------------------------
+    PHP             4.0.6                   (http://www.php.net)
+                    4.1.2
+                    5.0.4
+    MySQL           3.23.35                 (http://www.mysql.com)
+                    3.23.43
+                    4.1.13
+       
+#--------------------------------------------------------------------#
+/**
+ *  3.  INSTALL
+ */
+    /**
+     * 3.1 - Setting Up MySQL
+     */
+
+    a)  Connect to your mysql server:
+            $ mysql -u <username> -p
+
+        create a database name "mynews".
+
+            mysql> create database mynews;
+            mysql> exit;
+        
+        an alternative way to create the database is to use the
+        mysqladmin script. Ex.
+
+            $ mysqladmin -u root -p -create mynews
+
+    b)  Cat the file mynews.sql into your news database.  for ex.
+
+            $ mysql -u <username> -p mynews < mynews.sql
+
+    /**
+     *  3.2 - Setting up MyNews
+     */
+
+    You will have to setup the config.inc.php file.
+    
+    It is important to realize that the config.inc.php file needs to be
+    located in a specific path or MyNews *will not* work.
+
+    config.inc.php should always be located in the DOCUMENT_ROOT/include/
+    directory of your webserver.  If you are not sure where the
+    DOCUMENT_ROOT directory is, put the extras/phpinfo.php script in
+    somewhere in your web path and look for the DOCUMENT_ROOT variable.
+      
+        sh$> DOCUMENT_ROOT/include/config.inc.php
+
+    This file is pretty self explanatory, but here's the gist of it.
+
+    *Note* As of MyNews 4.1.2 you will need to copy:
+
+        sh$> DOCUMENT_ROOT/include/config.inc.php.distro
+    to:
+        sh$> DOCUMENT_ROOT/include/config.inc.php
+
+    /**
+     * Note:  In previous versions of the READMe, each config key was
+     *        explained.  Most of this documentation already exists
+     *        within the config.inc.php file and will no longer
+     *        be duplicated within this file.
+     */
+    
+#--------------------------------------------------------------------#
+/**
+ *  4.  PERMISSIONS
+ */
+
+	There are three levels of permissions for the administration section.  I
+	will go over these levels and what permissions they provide.
+
+
+    -----------------------------------------------------------------
+    |   Level       |   Permissions                                 |
+    -----------------------------------------------------------------
+    |   Author      |   An author has the ability to do the         |
+    |               |   following:                                  |
+    |               |                                               |
+    |               |   * Post News items.                          |
+    |               |   * Edit / Delete News items they posted.     |
+    |               |                                               |
+    |---------------|-----------------------------------------------|
+    |   Editor      |   An Editor has the ability to do the         |
+    |               |   following:                                  |
+    |               |                                               |
+    |               |   * Post News items.                          |
+    |               |   * Edit / Delete any News item.              |
+    |               |   * Post / Delete Submissions.                |
+    |               |   * Post / Edit / Delete Calendar events.     |
+    |               |                                               |
+    |---------------|-----------------------------------------------|
+    |   Admin       |   An Admin has the ability to do the          |
+    |               |   following:                                  |
+    |               |                                               |
+    |               |   * Post News items.                          |
+    |               |   * Edit / Delete any News item.              |
+    |               |   * Post / Delete Submissions.                |
+    |               |   * Post / Edit / Delete any Comments.        |
+    |               |   * Post / Edit / Delete Calendar events.     |
+    |               |   * Modify what Sections show up on the front |
+    |               |     page.                                     |
+    |               |   * Add / Edit / Delete Adminstrative Users.  |
+    |               |                                               |
+    -----------------------------------------------------------------
+
+#--------------------------------------------------------------------#
+/**
+ *  5.  SECTIONS
+ */
+
+    When a new Section is created It can only be deleted by someone
+    with access to the database your MyNews data is stored in.
+
+    There are a couple of reasons I haven't written web base
+    administration for this.
+
+    1)  If there are multiple items posted under that Section, what
+        section would those items be changed to?
+
+    2)  A section is not truly deleted until all posted News items
+        below it are.
+
+    I have left it up to the site administrator to delete sections as
+    they feel necessary.  I will provide a couple of example query's on
+    how to accomplish this, however.
+
+        mysql>  select * from sections;
+            +-------+-------------+-------+
+            | secid | section     | front |
+            +-------+-------------+-------+
+            |     2 | News        |     1 |
+            |     4 | Contributed |     0 |
+            |     1 | Features    |     0 |
+            |     3 | Reviews     |     0 |
+            +-------+-------------+-------+
+    
+    pick the section you want deleted.  Decide if you want to delete all
+    items under that section or change those item's section to another.
+
+    To Change to another section.
+    * Note: Make sure that <new section> is a section that alreay exists
+            in the sections table.  <old section> is the section you want
+            to delete.
+    
+        mysql>  update news set section = '<new section>'
+                where section = '<old section>';
+
+    To Delete everything in the section:
+    * Note: This is unrecoverable (unless you make frequent backups).
+
+        mysql>  delete from news where section = '<old section>';
+
+#--------------------------------------------------------------------#
+/**
+ *  6.  THEMES
+ */
+
+    * Note: As of release 5 of MyNews, the themeing engine has changed.
+
+    Ahhhh, welcome to the wonderful section on themeing.  Themeing is
+    pretty easy as long as you follow a few simple steps.
+
+    1)  The easiest way to learn theming is to hack up an existing one.
+        They can be found in:
+            {$myNewsConf['path']['sys']['index']}/templates/<theme>/
+
+    2)  The following is a list of files that are required in your
+        template:
+
+            layout.tpl      - The main layout of your site.
+            box.tpl         - the file that defines how a 'box' looks
+            caption.tpl     - same as above but for captions.
+            colors.tpl      - defines some default site colors that
+                              aren't defined via CSS
+
+    3)  You will *always* need the following files located in:
+            {$myNewsConf['path']['sys']['index']}/templates/
+
+            system_header.php       - contains any pre-output definitions
+                                      or code you want to be global.
+            system_footer.php       - contains any post-output definitions
+                                      or code you want to be global.
+            template.functions.php  - a library of functions that pertain
+                                      to the layout of the site.
+
+    Again, themeing is not *that* hard, but it does take a little practice
+    and an understanding of php.
+
+    If you build a theme send an email to me (See CONTACT) with the theme
+    tar.gz'd and I'll put a link to it from the MyNews homepage.
+
+#--------------------------------------------------------------------#
+/**
+ *  7.  CHANNEL FILE
+ */
+
+    If the ['default']['channel'] config key is turned on, MyNews will
+    write an RSS* file with the headlines from your 10 newest News Items.
+
+    This ['default']['channel_file'] config key is necessary if you set
+    ['default']['channel'] to 'on'.
+
+    This will create a file in your MyNews installation directory by the
+    name of whatever you set the ['default']['channel_file'] key to.
+
+    There are a few different ways to accomplish getting the Channel File
+    setup.
+
+
+    1)  You create an empty file with the correct owner/permissions before
+        turning the key on.
+
+            $ touch /path/to/mynews/install/htdocs/channel.rdf
+            $ chgrp nobody /path/to/mynews/install/htdocs/channel.rdf
+            $ chmod 664 /path/to/mynews/install/htdocs/channel.rdf
+
+        This *is* recommended.
+
+    2)  You create the file, and set it to writable by anyone.
+
+            $ touch /path/to/mynews/install/htdocs/channel.rdf
+            $ chmod 666 /path/to/mynews/install/htdocs/channel.rdf
+
+        This is *not* recommended.
+    
+    3)  Your MyNews install directory will either need to be mode 0777 (as the
+        file is written to/read from as the user your webserver runs as.
+
+            $ chmod 777 /path/to/mynews/install/htdocs
+    
+        This is *not* recommended.
+
+      * RSS stands for Rich Site Summary and can be read about at:
+        http://www.webreview.com/1999/10_29/webauthors/10_29_99_2a.shtml
+
+#--------------------------------------------------------------------#
+/**
+ *  8.  MISC
+ */
+
+    * Note: The about link always refers to the first article in your
+            database.  It is recommended to set your first article as
+            inactive, and populated with your "about" content.
+
+#--------------------------------------------------------------------#
+/**
+ *  9.  CONTACT
+ */
+
+    Please contact me at:
+        alien@alienated.org
+     
+    You can find updated versions at:
+        http://mynews.alienated.org/modules/display.php?file=content/download.html
+
+    To see a demo, please go to:
+        http://mynews.alienated.org
+
+    The mailing lists are no longer active.  I will soon setup a support
+    forum on the MyNews website for questions / concerns / bug reports /etc.
+     
+    Regards,
+    Mike McMurray
+    (alien@alienated.org)
