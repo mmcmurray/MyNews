@@ -1,0 +1,123 @@
+<?php
+/* $Id: mysql_rdf.class 130 2003-02-04 17:52:53Z kekepower $ */
+class mysql_rdf {
+
+    /*
+    Attr. for the connection to a mysql db
+    */
+    var $host     = "";
+    var $db       = "";
+    var $login    = "";
+    var $password = "";
+    
+    /*
+    Attr. for the sql query.
+    */
+    
+    var $sql      = "";
+    
+    /*
+    Attr. fieldnames within the query which shall be used to create the news items.
+    */
+    
+    var $title_field = "";
+    var $news_field = "";
+    var $story_path  = "";
+    var $link_field  = "";
+    
+
+    /*
+    Attr. for the rdf_title, rdf_link, rdf_descr, rdf_encoding and the rdf_lang.
+    */
+
+    var $rdf_title    = "";
+    var $rdf_link     = "";
+    var $rdf_descr    = "";
+    var $rdf_lang     = "";
+    var $rdf_encoding = "";
+    
+    function connect($outputfile){
+    
+        /*
+        Get attributes.
+        */
+        $host     = $this->host;
+        $db       = $this->db;
+        $login    = $this->login;
+        $password = $this->password;
+        $sql      = $this->sql;
+        
+        $rdf_encoding = $this->rdf_encoding;
+        /*
+        Connect to the Mysql server and run the query.
+        */
+        if (!mysql_connect($host,$login,$password)) {
+            echo "No connection made\n";
+            exit();
+        }
+        mysql_select_db( $db ) or die ( "Error opening the database\n" );
+        $result = mysql($db, $sql);
+        
+        
+        if (!$file=fopen($outputfile,w)) {
+        
+            echo "could not open the file";
+            
+        } else {
+
+            /*
+            Print header, doctype, etc..
+            */
+            fputs ( $file, "<?xml version=\"1.0\" encoding=\"$rdf_encoding\"?>\n\n" );
+            
+            fputs ( $file, "<!DOCTYPE rss PUBLIC \"-//Netscape Communications//DTD RSS 0.91//EN\"\n \"http://my.netscape.com/publish/formats/rss-0.91.dtd\">\n" );
+              
+            fputs ( $file, "<rss version=\"0.91\">\n\n" );
+            fputs ( $file, "<channel>\n" );
+            
+            
+            $rdf_title = $this->rdf_title;
+            $story_path  = $this->story_path;
+            $rdf_link  = $this->rdf_link;
+            $rdf_descr = $this->rdf_descr;
+            $rdf_lang  = $this->rdf_lang;
+            
+            fputs ( $file, "<title>$rdf_title</title>\n ");
+            fputs ( $file, "<link>$rdf_link</link>\n");
+            fputs ( $file, "<description>$rdf_descr</description>\n");
+            fputs ( $file, "<language>$rdf_lang</language>\n\n");
+
+
+            /*
+            Loop for printing the 10 items.
+            */
+
+            while ($row=mysql_fetch_array($result)) {
+            
+                $title = $this->title_field;
+                $news = $this->discr_field;
+                $link = $this->link_field;
+            
+                fputs ( $file, "<item>\n" );
+            
+                $title = "<title>" . htmlspecialchars(stripslashes($row[$title])) . "</title>\n";
+                $link  = "<link>$story_path" . htmlspecialchars(stripslashes($row[$link])) . "</link>\n";
+//                $news  = "<description>" . htmlspecialchars(stripslashes($row[$news])) . "</description>\n";
+
+                fputs ( $file,  $title );
+                fputs ( $file,  $link );
+                fputs ( $file,  $news );
+            
+                fputs ( $file, "</item>\n\n" );
+                
+            }        
+        
+        
+        }
+        
+        fputs ( $file, "</channel>\n");
+        fputs ( $file, "</rss>\n");
+        
+        fclose( $file );
+    }
+}

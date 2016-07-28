@@ -1,0 +1,231 @@
+<?php
+/* $Id: config.inc.php.distro 512 2005-09-27 23:24:07Z alien $ */
+$myNewsConf['debug']['timer']               = 'on';             // [on|off]
+
+/*
+ * Everything that doesn't fit into a specific category.
+ */
+$myNewsConf['default']['limit']             = 30 ;              // Maximum number of items you want to see on the archive pages.
+$myNewsConf['default']['count']             = 5;                // Set's the default count of headlines listed under each main story.
+$myNewsConf['default']['template']          = 'plain';          // This sets the "template" of the website.  See the README sections on theming.
+$myNewsConf['default']['button']            = 'gd';             // Sets your button type.  (gd|text)
+$myNewsConf['default']['siteurl']           = 'http://your.org';// Without the trailing slash
+$myNewsConf['default']['sitename']          = 'MyNews //';      // Precedes everything in the title bar of each page.
+$myNewsConf['default']['desc']              = 'News for Yous!'; // A brief description of your site to go in the title bar.
+$myNewsConf['default']['channel']           = 'off';            // Set this to on if you want the system to create an RSS channel file.
+$myNewsConf['default']['channel_file']      = 'channel.rdf';    // The name of your channel file.  Please the the README section on the Channel File
+$myNewsConf['default']['spam']['stop']      = 'on';             // The Spam Stop config key.  Changes the @ symbol in email addresses to a string
+                                                                // Defined by the ['spam']['string'] key.
+$myNewsConf['default']['spam']['string']    = ' [at] ';         // The string that replaces the @ symbol in email addresses if the ['spam']['stop']
+                                                                // Config Key is turned on.
+$myNewsConf['default']['pagebreak']         = '\[pagebreak\]';  // The string (regex allowed) that defines what your pages are split by.
+                                                                // It is not recommended to change this value if you do not have an understanding
+                                                                // of regular expressions.  If you decide not to change this value, your page
+                                                                // break tags will be: [pagebreak]
+
+/*
+ * Small bit of HTML you want displayed as the "title_header" of the website.
+ */
+$myNewsConf['default']['title_header']      = <<<EOT
+
+<h1>MyNews</h1>
+<h3>News for Yous!</h3>
+
+EOT;
+
+/*
+ * The Email Address of the site administrator.
+ */
+$myNewsConf['admin']['mail']['site']    = 'you@your.org';   // The email address of your site administrator (most likely, You!)
+$myNewsConf['admin']['mail']['cal']     = ''; // Calendar Admin notification address.  Only set this if the proceeding key is defined.
+
+/*
+ * Calendar event lists.
+ */
+$myNewsConf['admin']['cal']['list']     = ''; // Colon seperated list of Event types to mail the cal admin with.
+$myNewsConf['admin']['cal']['suppress'] = ''; // Colon seperated list of Event types to be suppressed on the main calendar display.
+
+/*
+ * System Paths (for includes/etc...)
+ * Note:  Be sure not to put the trailing slashes ("/") at the end of these defs.
+ */
+$myNewsConf['path']['sys']['index']     = '/path/to/your/htdocs' ;        // Path to your MyNews installation dir.
+$myNewsConf['path']['sys']['admin']     = '/path/to/your/htdocs/admin' ;  // Path to your MyNews Admin dir.
+$myNewsConf['path']['sys']['modules']   = '/path/to/your/htdocs/modules' ;// Path to your MyNews Module dir.
+
+/*
+ * Web Paths (for linking/etc...)
+ * It is recommended to put the trailing slash ("/") at the end of these defs.
+ */
+$myNewsConf['path']['web']['index']     = '/';          // Relative path to MyNews Install.
+$myNewsConf['path']['web']['admin']     = '/admin/';    // Relative path to MyNews Admin.
+$myNewsConf['path']['web']['modules']   = '/modules/';  // Relative path to your modules directory
+
+/* 
+ * Edit to make the script connect to your MySQL server with the right username and password.
+ */
+$myNewsConf['db']['hostname']   = 'localhost';  // Usually localhost.
+$myNewsConf['db']['dbUser']     = 'mynews';     // If you have no username, leave this space empty.
+$myNewsConf['db']['dbPass']     = 'h4h4';       // The same applies here.
+$myNewsConf['db']['dbName']     = 'mynews';     // This is the main database you connect to.
+
+/*
+ * Modules / Blocks definitions
+ */
+$myNewsConf['modules']['main']  = '';
+                                // Colon seperated list of modules you want installed into the system.
+$myNewsConf['modules']['admin'] = 'news:authors:calendar';
+                                // Colon seperated list of admin modules you want to display on the admin
+                                // Index page.
+$myNewsConf['blocks']['left']   = 'modules:sections:lastitems';
+                                // Colon seperated list of blocks you want on the left side of the page
+                                // Leave blank if unneeded.
+$myNewsConf['blocks']['right']  = 'cal';
+                                // Colon seperated list of blocks you want on the right side of the page.
+                                // Leave blank if unneeded.
+$myNewsConf['blocks']['exempt']['right']    = 'calendar:admin';
+                                // Exceptions list of pages that you don't want a given sidebar to show up.
+$myNewsConf['blocks']['exempt']['left']     = 'calendar';
+                                // Exceptions list of pages that you don't want a given sidebar to show up.
+
+/*******************************************************************/
+/* You can leave most of the rest of this alone.                   */
+/*******************************************************************/
+
+/*
+ * The following is the email template for the "sendfriend" function.
+ */
+$myNewsConf['email']['template']['friend']  = <<<EOT
+%TNAME%,
+
+%FNAME% has sent you this email via %SNAME%, and would like you
+to read the article located at:
+    %ART%
+
+Entitled:   %TITLE%
+
+Please feel free to browse through the website and make use of its
+features.
+
+Thank you,
+staff
+EOT;
+
+/*
+ * The following is the email template for the submission notification.
+ */
+$myNewsConf['email']['template']['submit']  = <<<EOT
+
+There is a new news submission in the following queue.
+    %SITENAME%
+
+Please visit the following URI to view the pending
+submission:
+    %SITEURL%
+EOT;
+
+/*
+ * Database table definitions
+ */
+$myNewsConf['db']['table']['news']          = 'news';         // This is the table you made. Probably 'news'.
+$myNewsConf['db']['table']['submissions']   = 'submissions';  // This is the submissions table you made
+$myNewsConf['db']['table']['comments']      = 'comments';     // This is the comments table
+$myNewsConf['db']['table']['authors']       = 'authors';      // This is the authors table
+$myNewsConf['db']['table']['sections']      = 'sections';     // This is the sections table
+$myNewsConf['db']['table']['calendar']      = 'calendar';     // This is the calendar table
+
+/*
+ * Script name definitions
+ */
+$myNewsConf['scripts']['index']     = 'index.php';    // Your index script.
+$myNewsConf['scripts']['story']     = 'story.php';    // Your story script.
+$myNewsConf['scripts']['archive']   = 'archive.php';  // Your archive script.
+$myNewsConf['scripts']['comments']  = 'comments.php'; // Your comments script.
+$myNewsConf['scripts']['about']     = 'about.php';    // Your about script.
+$myNewsConf['scripts']['submit']    = 'submit.php';   // Your submission script.
+$myNewsConf['scripts']['search']    = 'search.php';   // Your search script.
+$myNewsConf['scripts']['calendar']  = 'calendar.php'; // Your calendar script.
+$myNewsConf['scripts']['event']     = 'event.php';    // Your calendar event script.
+$myNewsConf['scripts']['hof']       = 'hof.php';      // Your Hall of Fame script
+
+/*
+ * Admin Scripts
+ */
+$myNewsConf['adminScripts']['authors']      = 'authadmin.php';    // Your users admin script
+$myNewsConf['adminScripts']['news']         = 'newsadmin.php';    // Your news admin script
+$myNewsConf['adminScripts']['calendar']     = 'caladmin.php';     // Your calendar admin script
+$myNewsConf['adminScripts']['preferences']  = 'prefsadmin.php';   // Your preferences admin script
+$myNewsConf['adminScripts']['login']        = 'login.php';        // Your Admin login script
+$myNewsConf['adminScripts']['logout']       = 'logout.php';       // Your Admin logout script
+
+/*
+ * Link title for your admin scripts.
+ */
+$myNewsConf['admin']['name']['news']     = 'Administer News';
+$myNewsConf['admin']['name']['authors']  = 'Administer Authors';
+$myNewsConf['admin']['name']['calendar'] = 'Administer Calendar';
+
+/*
+ * Date info
+ */
+$myNewsConf['format']['date']['default']    = 'M. dS, Y g:i a';   // Date format: Human readable with hours and minutes.
+$myNewsConf['format']['date']['nice']       = 'l, M. dS, Y';      // Date format: specifically for the portal/calendar event dates.
+
+/*
+ * Form Settings
+ */
+$myNewsConf['form']['textarea']['cols']     = 70; // The number of columns (width) you want your TEXTAREA's
+$myNewsConf['form']['textarea']['rows']     = 20; // The number of rows (height) you want your TEXTAREA's
+$myNewsConf['form']['text']['width']        = 40; // The width you want your text input types.
+
+/*
+ * Button Stuff
+ */
+$myNewsConf['button']['gd']['search']   = '<input type="image" border="0" src="/templates/' . $myNewsConf['default']['template'] . '/images/button.php?text=Search" name="reg">';
+$myNewsConf['button']['gd']['submit']   = '<input type="image" border="0" src="/templates/' . $myNewsConf['default']['template'] . '/images/button.php?text=Submit" name="reg">';
+$myNewsConf['button']['gd']['next']     = '<img src="/templates/' . $myNewsConf['default']['template'] . '/images/button.php?text=Next>>&w=10&h=-1" border="0">';
+$myNewsConf['button']['gd']['back']     = '<img src="/templates/' . $myNewsConf['default']['template'] . '/images/button.php?text=<<Back&w=10&h=-1" border="0">';
+
+$myNewsConf['button']['text']['search'] = '<input type="submit" value="Search" class="button">';
+$myNewsConf['button']['text']['submit'] = '<input type="submit" value="Submit" class="button">';
+$myNewsConf['button']['text']['next']   = '<img src="/templates/' . $myNewsConf['default']['template'] . '/images/mynews_next.gif" border="0">';
+$myNewsConf['button']['text']['back']   = '<img src="/templates/' . $myNewsConf['default']['template'] . '/images/mynews_back.gif" border="0">';
+
+if($myNewsConf['default']['button'] == 'gd'){
+    $myNewsConf['button']['search'] = $myNewsConf['button']['gd']['search'];
+    $myNewsConf['button']['submit'] = $myNewsConf['button']['gd']['submit'];
+    $myNewsConf['button']['next']   = $myNewsConf['button']['gd']['next'];
+    $myNewsConf['button']['back']   = $myNewsConf['button']['gd']['back'];
+} else {
+    $myNewsConf['button']['search'] = $myNewsConf['button']['text']['search'];
+    $myNewsConf['button']['submit'] = $myNewsConf['button']['text']['submit'];
+    $myNewsConf['button']['next']   = $myNewsConf['button']['text']['next'];
+    $myNewsConf['button']['back']   = $myNewsConf['button']['text']['back'];
+}
+
+
+/*
+ * The following checks to see if a certain image file exists, and
+ * defines the $myNewsConf['button']['thread'] key base on its result.
+ */
+if(file_exists($myNewsConf['path']['sys']['index'] . '/templates/' . $myNewsConf['default']['template'] . '/images/thread.gif')){
+    $myNewsConf['button']['thread'] = '<img src="' . $myNewsConf['path']['web']['index'] . 'templates/' . $myNewsConf['default']['template'] . '/images/thread.gif" width="12" height="21">';
+} else {
+    $myNewsConf['button']['thread'] = '&middot;';
+}
+
+/*
+ * Color Definitions
+ */
+if(file_exists($myNewsConf['path']['sys']['index'] . '/templates/' . $myNewsConf['default']['template'] . '/colors.tpl')){
+    include($myNewsConf['path']['sys']['index'] . '/templates/' . $myNewsConf['default']['template'] . '/colors.tpl');
+}
+
+/*
+ * Blocks Config Includes.
+ *
+ * This is where you will include configuration files for addon blocks.
+ *
+ * Ex. include($myNewsConf['path']['sys']['modules'] . '/conf/fileman.conf.php');
+ */
+?>

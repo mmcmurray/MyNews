@@ -1,0 +1,14 @@
+/**
+ * WISHLIST
+ */
+
+/** $Id: WISHLIST 510 2005-09-27 21:39:13Z alien $ */
+
+This is just a wishlist of things I'd like to see in MyNews.
+Maybe not in v5. Perhaps v6 or later.
+
+1.	Write inline documentation for MyNews
+		-	Preferrably in HTML :)
+2.	Write documentation for Modules / Blocks / Themes
+3.	Make config.inc.php shorter.
+		-	Let's decide some standard settings

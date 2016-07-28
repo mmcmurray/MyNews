@@ -1,0 +1,16 @@
+/**
+ * TODO
+ */
+
+/** $Id: TODO 476 2005-08-17 20:49:54Z mmcmurr $ */
+
+There are many things I would like this to become, so please
+send in enhancement requests.
+
+1) convert MyNews to use ADODB database abstraction library.
+2) Write Documentation for Blocks (Modules)
+3) Move text into their own language-files
+4) More?
+
+--Mike (alien@alienated.org)
+--kekePower (kekepower@susperianews.com)

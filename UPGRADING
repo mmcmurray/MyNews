@@ -1,0 +1,48 @@
+/**
+ * UPGRADING MyNews
+ **/
+
+/** $Id: UPGRADING 476 2005-08-17 20:49:54Z mmcmurr $ */
+
+The purpose of this file is to present an upgrade path to a user with
+an already installed version on MyNews-4. 
+
+1.  In the event of an SQL update (will only happen on major number
+    releases), a sql script will be provided to upgrade your
+    database.  It is recommended that you back up your data by doing
+    a mysql dump in case you need to back out of the upgrade.
+
+    The syntax for a mysql dump is:
+
+    $ mysqldump -opt <dbName> -u <dbUser> -p > <dbName>.dump.sql
+      Password: <dbPass>
+
+  * Note:  a major number release for example would be going from
+    MyNews-4.2.1 -> MyNews-5.0.1
+
+    In the event a sql upgrade script is not provided, it will be
+    noted at the top of this file.
+
+2.  It is recommended (as with upgrading most everything) that you
+    backup your files.  This includes modifications to themes you may
+    have done, images you may have manipulated and most importantly
+    your config.inc.php file.
+
+    In the distributions >= 4.2.1 when copy over your MyNews files,
+    your config.inc.php is not overwritten.  A config.inc.php.distro
+    file is created in the same directory as the config.inc.php.
+
+    It is recommended you place all of your config values in the
+    config.inc.php.distro file, copy your original config.inc.php to
+    a safe place and then mv config.inc.php.distro -> config.inc.php
+
+3.  Again, as with any upgrade It is *always* recommended to read the
+    Changelog provided with the distribution before you begin your
+    upgrade.  There may actually be a change that breaks something you
+    have done, and it's nice to know before hand.
+
+4.  Finally, I would like to thank many people for bearing with me on
+    the release of MyNews, as there are many things that have been
+    broken and in turn fixed.  The list is too long so I'll just say:
+
+    Thank you! (You know who you are ;-)
