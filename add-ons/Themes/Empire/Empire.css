@@ -1,0 +1,421 @@
+/* CSS Document */
+
+html, body {
+    text-align: center;
+    margin:0;
+    padding:0;
+}
+
+td {
+    font-size: 11px;
+    line-height: 140%;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    color: #D4D4D4;
+}
+
+#page_bg {
+    background-color:#1D1D1D;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    color: #F7F7F7;
+    margin-top: 15px;
+}
+
+#container {
+    margin-left:auto;
+    margin-right:auto;
+    width:90%;
+    margin-top: 15px;
+    background-image: url(images/BLANK_HEADER_IMAGE.png);
+    background-repeat: no-repeat;
+    background-position: left top;
+    background-color: #000000;
+    text-align: left;
+    background-attachment: scroll;
+    margin-bottom: 15px;
+}
+
+#titlebar {
+    height: 51px;
+    clear: both;
+    background-image: none;
+    border-right: 1px #444 solid;
+    border-left: 1px #444 solid;
+}
+
+div.search {
+    background-image: none;
+    text-align: right;
+    padding-right: 30px;
+    float: right;
+}
+
+div.logo{
+    background-image: none;
+    float: left;
+    margin: -5px auto;
+    padding-left: 50px;
+    height: 50px;
+    clear: both;
+}
+
+div.logo h1{
+    font-weight: normal;
+    font-size: 28px;
+    font-family:  Verdana, Arial, Helvetica, sans-serif;
+    clear:left;
+    text-decoration: none;
+    color: #aaa;
+    margin: 0px;
+}
+
+div.logo h3{
+    font-weight: bold;
+    font-size: 12px;
+    font-family:  Verdana, Arial, Helvetica, sans-serif;
+    text-decoration: none;
+    color: #999;
+    margin: 0px;
+}
+
+#navbar{
+    height: 40px;
+    margin: 0px auto;
+    clear: both;
+    vertical-align: middle;
+    background-image: none;
+    border-right: 1px #444 solid;
+    border-left: 1px #444 solid;
+}
+
+div.nav{
+    float: left;
+    padding-left: 25px;
+    vertical-align: top;
+}
+
+div.login{
+    float: right;
+    text-align: center;
+    padding-right: 10px;
+}
+
+.componentheading {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+    color: #515151;
+}
+
+.contentheading {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+    color: #999;
+    height: 18px;
+}
+
+div.headlines {
+    margin-top: 5px;
+    margin-left: 25px;
+    color: #666;
+}
+
+div.headlines a:link, div.headlines a:visited {
+    color: #0099FF;
+    background-image: url(images/menubgb.png);
+    background-repeat: no-repeat;
+    background-position: left center;
+    padding-left: 8px;
+}
+
+a:link, a:visited {
+    color: #0099FF;
+    text-decoration: underline;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+div#leftcol a:link, div#leftcol a:visited {
+    color: #F9F9F9;
+    text-decoration: underline;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    font-weight: normal;
+    line-height: 15px;
+    background-image: url(images/menubg.png);
+    background-repeat: no-repeat;
+    background-position: left center;
+    padding-left: 8px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+div#leftcol a:hover {
+    color: #0099FF;
+    text-decoration: none;
+    background-image: url(images/menubgb.png);
+    background-repeat: no-repeat;
+    background-position: left center;
+    padding-left: 8px;
+}
+
+#navbar a:link, #navbar a:visited {
+    color: #0099FF;
+    text-decoration: none;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    font-weight: normal;
+    line-height: 14px;
+}
+
+#navbar a:hover {
+    color: #0099FF;
+    text-decoration: underline;
+    margin-bottom: 3px;
+}
+
+.topleft{
+    background-image: url(images/topleftshadow.png);
+    background-repeat: no-repeat;
+    background-position: left top;
+    height: 14px;
+    width: 14px;
+    float: left;
+}
+
+.top{
+    background-image: url(images/top_shadow.png);
+    background-repeat: repeat-x;
+    background-position: center top;
+    float: left;
+    height: 14px;
+    width: 100%;
+}
+
+.topright{
+    background-image: url(images/search.png);
+    background-repeat: no-repeat;
+    background-position: right top;
+    height: 14px;
+    width: 14px;
+    float: right;
+}
+
+.botleft{
+    background-image: url(images/botleftshadow.png);
+    background-repeat: no-repeat;
+    background-position: right bottom;
+    height: 14px;
+    width: 14px;
+    float: left;
+}
+
+.bottom{
+    background-image: url(images/bot_shadow.png);
+    background-repeat: repeat-x;
+    background-position: center bottom;
+    height: 14px;
+    width: 100%;
+    clear: both;
+}
+
+.botright{
+    background-image: url(images/botrightshadow.png);
+    background-repeat: no-repeat;
+    background-position: left bottom;
+    height: 14px;
+    width: 14px;
+    float: right;
+}
+
+#wrapper{
+    clear: both;
+    background: #000;
+    border-right: 1px #444 solid;
+    border-left: 1px #444 solid;
+}
+
+#leftcol{
+    background-image: none;
+    float: left;
+    width: 20%;
+    position: relative;
+    text-align: left;
+    margin: 0px;
+    padding-left: 10px;
+}
+
+#mainbody{
+    float: right;
+    width: 75%;
+    display: inline;
+    position: relative;
+    margin-right: 20px;
+}
+
+div#leftcol table.moduletable th {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+    color: #999999;
+    width: 150px;
+    background-image: url(images/modhdrbg.png);
+    background-repeat: no-repeat;
+    background-position: left bottom;
+    padding-bottom: 3px;
+}
+
+div.moduletable h3 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+    color: #999999;
+    margin: 0px;
+    padding: 0px;
+}
+
+div.maindivider {
+    height: 1px;
+    margin: 0px auto;
+    padding: 0px;
+    background-image: url(images/conhdrbg.png);
+    background-repeat: no-repeat;
+    background-position: left center;
+}
+
+div#leftcol table.moduletable {
+    margin-bottom: 15px;
+}
+
+.createdate,.small{
+    color: #666666;
+    font-size: 10px;
+    line-height: 10px;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+.inputbox {
+    background-color: #1D1D1D;
+    border: 1px solid #3C3C3C;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    color: #999999;
+    line-height: 14px;
+}
+
+input, textarea, select {
+    background-color: #1D1D1D;
+    border: 1px solid #3C3C3C;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    color: #999999;
+    line-height: 14px;
+}
+
+.button {
+    background-color: #1D1D1D;
+    border: 1px solid #3C3C3C;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    color: #999999;
+    line-height: 14px;
+    text-align: center;
+    vertical-align: middle;
+    text-transform: uppercase;
+    padding: 2px;
+}
+
+.readon {
+    font-size: 10px;
+}
+
+.sectiontableheader {
+    background-color: #202020;
+    color: #CCCCCC;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+}
+
+.sectiontableentry1 td {
+    color: #CCCCCC;
+    padding: 8px;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: #333333;
+    background-color: #0C0C0C;
+}
+
+.sectiontableentry2 td {
+    color: #CCCCCC;
+    padding: 8px;
+    border-bottom-width: 1px;
+    border-bottom-color: #333333;
+    border-bottom-style: solid;
+    background-color: #0C0C0C;
+}
+
+table.caption {
+    border-left: 1px #444 solid;
+    border-right: 1px #444 solid;
+    padding-left: 5px;
+    padding-top: 0px;
+    vertical-align: top;
+}
+
+table.contable {
+    margin-bottom: 20px;
+}
+
+table.t1 {
+    font-size: 8px;
+    border: 1px #444 solid;
+    padding: 0;
+    margin: 0px auto;
+    border-collapse: collapse;
+}
+
+div.sticky {
+    border-top: 1px #333 solid;
+    border-bottom: 1px #333 solid;
+    margin-left: 10px;
+    margin-right: 100px;
+    padding: 5px;
+    color: #888;
+    font-size: 10px;
+    line-height: 11px;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+.alt {
+    border-top: 1px #444 solid;
+    border-bottom: 1px #444 solid;
+    background-color: #222;
+}
+
+td.postedby {
+    color: #444;
+}
+
+/* *** Float containers fix:
+
+http://www.csscreator.com/attributes/containedfloat.php *** */ 
+
+.clearfix:after {
+content: "."; 
+display: block; 
+height: 0; 
+clear: both; 
+visibility: hidden;
+}
+.clearfix{display: inline-table;}
+
+/* Hides from IE-mac \*/
+
+* html .clearfix{height: 1%;}
+
+.clearfix{display: block;}
+
+/* End hide from IE-mac */  
